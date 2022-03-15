@@ -78,8 +78,8 @@ const FormularioRanking = () => {
                 required: true,
                 message: "error message",
                 maxLength: 20,
-                pattern: /^[A-Za-z]+$/i,
-              })}
+                pattern: /^[a-zA-ZÀ-ÿ\s]+$/i,
+              })}       
             />
             <span className="text-danger text-small d-block mb-2">
               {errors.usuario && errors.nombre.message}
@@ -98,7 +98,7 @@ const FormularioRanking = () => {
                 required: true,
                 message: "error message",
                 maxLength: 20,
-                pattern: /^[A-Za-z]+$/i,
+                pattern: /^[a-zA-ZÀ-ÿ\s]+$/i,
               })}
             />
             <span className="text-danger text-small d-block mb-2">
@@ -118,8 +118,7 @@ const FormularioRanking = () => {
               {...register("position", {
                 required: true,
                 message: "error message",
-                maxLength: 20,
-                pattern: /^[A-Za-z]+$/i,
+                maxLength: 20
               })}
             >
               <option value="Reves">Reves</option>

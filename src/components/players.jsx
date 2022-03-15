@@ -25,10 +25,12 @@ const ListaDePlayers = () => {
       <div className="d-flex mt-5 mx-3 contenedor-img">
       {
         players.length > 0 ? (players.map((item) => (
-          <div key={item.id} className="my-4 mx-4">
-            <h4>{item.firstName} {item.lastName}</h4>
+          <div key={players} className="my-4 mx-4">
+            <div className="mx-3 my-3">
+            <h4 className="">{item.firstName} {item.lastName}</h4>
             <p className="text-dark">{item.position}</p>
             <img className="rounded-circle border border-dark border-3" src={item.foto} width="200" height="200" alt=""/>
+            </div>
           </div>
         ))
         ) : <span></span>
