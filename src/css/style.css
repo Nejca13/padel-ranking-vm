@@ -1,0 +1,19 @@
+.containerPrincipal {
+    display: grid;
+    height: 100vh;
+    justify-content: center;
+}
+
+.containerDivs{
+    padding: 30px;
+    height: fit-content;
+}
+
+.contenedor-img{
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.progressBar{
+    width: 100%;
+}
