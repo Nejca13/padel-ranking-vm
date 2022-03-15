@@ -19,7 +19,7 @@ const ListaDePlayers = () => {
     };
   return (
     <div>
-      <button onClick={obtenerDatos} className="mx-4 btn btn-primary" >
+      <button onClick={obtenerDatos} className="mx-4 my-5 btn btn-success" >
         Obtener Jugador
       </button>
       <div className="d-flex mt-5 mx-3 contenedor-img">

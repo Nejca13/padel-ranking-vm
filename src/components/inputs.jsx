@@ -14,7 +14,6 @@ const FormularioRanking = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   
@@ -46,8 +45,6 @@ const FormularioRanking = () => {
     const url = await getDownloadURL(ref(storage, imagen.name))
    setPlayerImg(url)
    setBoton(false)
-   console.log("Recien Setea URL")
-   
   }
   const onSubmit = async(data, e) => {
       console.log("Empezo el Submit")
