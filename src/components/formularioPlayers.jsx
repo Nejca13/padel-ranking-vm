@@ -69,6 +69,7 @@ const FormularioRanking = () => {
     setPlayerImg("");
     setCarga(0);
     setBoton(true);
+    alert("Jugador cargado exitosamente!")
   };
 
   const getCroppedImg = async (e) => {

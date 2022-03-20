@@ -1,6 +1,6 @@
 .containerPrincipal {
     display: grid;
-    height: 90vh;
+    
     justify-content: center;
     position: relative;
 }
@@ -109,6 +109,15 @@
     align-items: center;
 }
 
+.socialMedia:hover{
+    transform: scale(1.5);
+    transition: all ease .4s;
+}
+
+.creador{
+    color: rgb(197, 128, 0);
+}
+
 /*------------------------------------MEDIAQUERY----------------*/
 
 @media (max-width: 767px){
@@ -127,10 +136,6 @@
     
     form{
         width: 100%;
-    }
-
-    .torneosDiv{
-       
     }
 
     .cropperDiv{
