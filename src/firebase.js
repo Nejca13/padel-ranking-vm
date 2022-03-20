@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAWOX8rTmzupfQbudzqiwrR_iflAWIwBag",
-  authDomain: "padel-ranking-14268.firebaseapp.com",
-  databaseURL: "https://padel-ranking-14268-default-rtdb.firebaseio.com",
-  projectId: "padel-ranking-14268",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: "padel-ranking-14268.appspot.com",
-  messagingSenderId: "536104704607",
-  appId: "1:536104704607:web:25668e34302f17156799ea",
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
   measurementId: "G-2V0J1L2SNC"
 };
 
@@ -20,6 +20,3 @@ const dataBase = getFirestore(app);
 
 
 export default dataBase;
-
-
-
