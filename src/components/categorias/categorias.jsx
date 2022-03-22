@@ -1,20 +1,20 @@
 import uniqid from "uniqid";
 
-const Quinta = (props) => {
-    const quinta = props.players.filter((item) => item.categoria === "5ta" );
+const Categorias = (props) => {
+    const cat = props.players.filter((item) => item.categoria === props.categoria );
 
     return (
         <div>
-            {quinta.length > 0 ?
+            {cat.length > 0 ?
           (
         <div>
         <div className="bg-black container-fluid mx-0">
-          <p className="text-white-50 fs-4 text-center mb-0 pt-1 font-monospace">5° QUINTA</p>
+          <p className="text-white-50 fs-4 text-center mb-0 font-monospace pt-1">{props.categoria[0]}° CAT</p>
         </div>
         <div className="cards">
         {
-          quinta.length > 0 && (
-            quinta.map((item) => (
+          cat.length > 0 && (
+            cat.map((item) => (
               <div key={uniqid()} className="border border-3 rounded my-4 mx-4 playerCard">
                 <div className="mx-3 my-3 player">
                   <div className="">
@@ -35,6 +35,11 @@ const Quinta = (props) => {
                     height="200"
                     alt=""
                   />
+                  <div>
+                    <p className="text-dark fs-5 d-flex justify-content-between container-fluid mb-0 mt-1 ">
+                      {item.localidad}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))
@@ -48,4 +53,4 @@ const Quinta = (props) => {
     )
 };
 
-export default Quinta;
+export default Categorias;

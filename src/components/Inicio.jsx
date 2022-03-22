@@ -1,5 +1,5 @@
 import ListaDeTorneos from "./listaDeTorneos";
-import mercadoPago from "../img/MercadoPago.svg"
+import mercadoPago from "../img/MercadoPago.svg";
 
 const Home = () => {
   return (
@@ -29,12 +29,13 @@ const Home = () => {
             height="1"
           />
         </form>
-        <button className="botonMercadoPago"> 
-          <a className="text-white botonMercadoPago" 
-          href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c9380847fa2d1c8017fa319a64f0009&fbclid=IwAR1-C_PNy8-R93rJp88fMmYUP-B1PaZkJKfGeDc_-tmJHnpxPckPaOj8FDA">
-             <img src={mercadoPago} alt="" width="50" />
+        <button className="botonMercadoPago">
+          <a
+            className="text-white botonMercadoPago"
+            href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c9380847fa2d1c8017fa319a64f0009&fbclid=IwAR1-C_PNy8-R93rJp88fMmYUP-B1PaZkJKfGeDc_-tmJHnpxPckPaOj8FDA"
+          >
+            <img src={mercadoPago} alt="" width="50" />
           </a>
-         
         </button>
       </div>
     </div>

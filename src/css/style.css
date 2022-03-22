@@ -1,149 +1,172 @@
 .containerPrincipal {
-    display: grid;
-    
-    justify-content: center;
-    position: relative;
+  display: grid;
+
+  justify-content: center;
+  position: relative;
 }
 
-.containerDivs{
-    padding: 30px;
-    height: fit-content;
-    width: 70%;
+.containerDivs {
+  padding: 30px;
+  height: fit-content;
+  width: 70%;
 }
 
-.containerForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.contenedor-img{
-    justify-content: space-around;
-    flex-wrap: wrap;
+.contenedor-img {
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.progressBar{
-    width: 100%;
+.progressBar {
+  width: 100%;
 }
 
-.nav-link{
-    margin-top: .5rem ;
+.nav-link {
+  margin-top: 0.5rem;
 }
 
-.containerUl{
-    width: 100%;
+.containerUl {
+  width: 100%;
 }
 
-.containerHome{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.containerHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.ulLink{
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center;
+.navbar-nav.ulLink {
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 
-.torneosDiv{
-    margin-top: 20px;
-    width: 100%;
+.torneosDiv {
+  margin-top: 20px;
+  width: 100%;
 }
 
-.bannerTorneo{
-    width: 100%;
+.bannerTorneo {
+  width: 100%;
 }
 
-.donantes{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 50%;
+.donantes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
 }
 
-.botonMercadoPago{
-    text-decoration: none;
-    background-color: white;
-    border-radius: 50px;
-    border-color: rgb(13, 24, 104);
+.botonMercadoPago {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 50px;
+  border-color: rgb(13, 24, 104);
 }
 
-.cropperDiv{
-    position: absolute;
-    width: 40%;
-    bottom: -5%;
-    left: 25%;
-    background-color: rgb(0, 0, 0, .5);
-    
+.cropperDiv {
+  position: absolute;
+  width: 50%;
+  bottom: 5%;
+  left: 25%;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.playerCard{
-    width: 280px;
+.playerCard {
+  width: 280px;
 }
 
-.cardTitle{
-    padding-top: 5px;
+.cardTitle {
+  padding-top: 5px;
 }
 
-.player{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.socialMedia{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.socialMedia {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.socialMedia:hover{
-    transform: scale(1.5);
-    transition: all ease .4s;
+.message {
+  font-size: 45px;
+  color: #3b5998;
 }
 
-.creador{
-    color: rgb(197, 128, 0);
+.message:hover {
+  font-size: 55px;
+  color: rgb(189, 38, 209);
+  transition: all ease 0.4s;
+}
+
+.whatsapp{
+  color: #00bb2d;
+  font-size: 45px;
+}
+
+.whatsapp:hover{
+  font-size: 55px;
+  color: #00bb2d;
+  transition: all ease .4s;
+}
+
+.saludo{
+  color: #3b5998;
+}
+
+.creador {
+  color: rgb(197, 128, 0);
+}
+
+.botonRecortar {
+  z-index: 10;
 }
 
 /*------------------------------------MEDIAQUERY----------------*/
 
-@media (max-width: 767px){
-    .tituloPaginas{
-        text-align: center;
-    }
+@media (max-width: 767px) {
+  .tituloPaginas {
+    text-align: center;
+  }
 
-    .torneo{
-        display: none;
-    }
+  .torneo {
+    display: none;
+  }
 
-    .containerDivs{
-        margin: 20px 10px;
-        width: 90%;
-    }
-    
-    form{
-        width: 100%;
-    }
+  .containerDivs {
+    margin: 20px 10px;
+    width: 90%;
+  }
 
-    .cropperDiv{
-        position: absolute;
-        width: 100%;
-        bottom: -135px;
-        left: 10px;
-        background-color: rgb(0, 0, 0, .5);
-        
-    }
+  form {
+    width: 100%;
+  }
+
+  .cropperDiv {
+    position: absolute;
+    width: 90%;
+    bottom: 5%;
+    left: 5%;
+    background-color: rgb(0, 0, 0, 0.5);
+  }
 }

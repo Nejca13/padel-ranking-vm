@@ -28,7 +28,7 @@ const FormularioRanking = () => {
     formState: { errors },
   } = useForm();
 
-  const imagenHandler = (e) => { //Lo tiene que hacer con la imagen recortada !!
+  const imagenHandler = (e) => {
 
     setImagenBruta(URL.createObjectURL(e.target.files[0]))
     /*const imagen = e.target.files[0];
@@ -55,6 +55,36 @@ const FormularioRanking = () => {
     setPlayerImg(url);
     setBoton(false);*/
   };
+
+  const Uploader = async () => {
+    if(result !== null){
+      const storage = getStorage();
+    const storageRef = ref(storage, result.name);
+    const uploadTask = uploadBytesResumable(storageRef, result);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setCarga(progress);
+        
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        });
+      }
+    );
+    await uploadBytes(storageRef, result).then((snapshot) => {
+    });
+    const url = await getDownloadURL(ref(storage, result.name));
+    setPlayerImg(url);
+    setBoton(false);
+    
+    }
+  }
+
   const onSubmit = async (data, e) => {
     await setDoc(doc(dataBase, 'players', data.firstName.toUpperCase() + data.lastName.toUpperCase() + uniqid()),
       {firstName: data.firstName.toUpperCase(),
@@ -106,36 +136,12 @@ const FormularioRanking = () => {
       "image/jpeg",
       1
     );
-    
-    
-      if(result !== null){
-        const storage = getStorage();
-      const storageRef = ref(storage, result.name);
-      const uploadTask = uploadBytesResumable(storageRef, result);
-  
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setCarga(progress);
-          setImagenBruta(null)
-        },
-        (error) => {},
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          });
-        }
-      );
-      await uploadBytes(storageRef, result).then((snapshot) => {
-      });
-      const url = await getDownloadURL(ref(storage, result.name));
-      setPlayerImg(url);
-      setBoton(false);
-      
-      }
-    
+    setImagenBruta(null)
+    Uploader();
   }
+
+  
+
   return (
     <div className="containerPrincipal">
        
@@ -290,7 +296,7 @@ const FormularioRanking = () => {
               className="form-control"
               id="foto"
               type="file"
-              accept="image/png, image/jpeg"
+              accept="image/*"
             />
             <div className="progress my-3">
               <div
@@ -315,11 +321,14 @@ const FormularioRanking = () => {
             { imagenBruta != null ? 
                 <div className="d-flex row align-items-center justify-content-center mt-4 flex-sm-column cropperDiv">
                   <ReactCrop src={imagenBruta} className="cropperImg col-8" onImageLoaded={setImagen} crop={crop} onChange={setCrop}/>
-                  <button className="btn btn-success mt-3 col-8" onClick={getCroppedImg}>
+                  
+                  <div className="d-flex justify-content-around mb-2">
+                  <button className="btn btn-danger mt-3 col-4 botonRecortar" onClick={(e) => setImagenBruta(null)}>
+                    Cancelar
+                  </button>
+                  <button className="btn btn-success mt-3 col-4 botonRecortar" onClick={getCroppedImg}>
                   Recortar
                   </button>
-                  <div>
-                  
                   </div>
                   
                 </div>

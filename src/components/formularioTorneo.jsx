@@ -136,7 +136,7 @@ const FormularioTorneo = () => {
               className="form-control"
               id="bannerTorneo"
               type="file"
-              accept="image/png, image/jpeg"
+              accept="image/*"
             />
             <div className="progress my-3">
               <div

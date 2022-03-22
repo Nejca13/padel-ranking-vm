@@ -1,11 +1,8 @@
 import dataBase from "../firebase";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import Cuarta from "./categorias/cuarta.jsx";
-import Quinta from "./categorias/quinta";
-import Sexta from "./categorias/sexta";
-import Septima from "./categorias/septima";
-import Octava from "./categorias/octava";
+import Categorias from "./categorias/categorias";
+//import Buscador from "./buscador";
 
 const ListaDePlayers = () => {
   const [players, setPlayers] = useState([]);
@@ -22,12 +19,15 @@ const ListaDePlayers = () => {
 
   return (
     <div>
-      <div className="mt-5 mx-3 contenedor-img">
-        <Cuarta players={players} />
-        <Quinta players={players} />
-        <Sexta players={players} />
-        <Septima players={players} />
-        <Octava players={players} />
+      <div className="mt-3 mx-3 contenedor-img">
+        {
+          // <Buscador players={players} />
+        }
+        <Categorias players={players} categoria="4ta" />
+        <Categorias players={players} categoria="5ta" />
+        <Categorias players={players} categoria="6ta" />
+        <Categorias players={players} categoria="7ma" />
+        <Categorias players={players} categoria="8va" />
       </div>
     </div>
   );
