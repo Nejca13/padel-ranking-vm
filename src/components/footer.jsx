@@ -1,6 +1,7 @@
+import React from "react";
 const Footer = () => {
   return (
-    <div className="position-relative bottom-0 mb-5 text-center">
+    <div className="position-relative bottom-0 mb-5 text-center text-secondary">
       creado por{" "}
       <strong>
         <a

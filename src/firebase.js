@@ -19,4 +19,4 @@ const dataBase = getFirestore(app);
 
 
 
-export default dataBase;
+export {dataBase, app};

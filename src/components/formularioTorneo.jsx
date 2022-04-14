@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "../css/style.css";
 import { collection, addDoc } from "firebase/firestore";
-import dataBase from "../firebase";
+import {dataBase} from "../firebase";
 import {
   getStorage,
   ref,
@@ -9,7 +9,7 @@ import {
   getDownloadURL,
   uploadBytesResumable,
 } from "firebase/storage";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const FormularioTorneo = () => {
   const [bannerImg, setBannerImg] = useState("");
@@ -67,8 +67,8 @@ const FormularioTorneo = () => {
   return (
     <div className="containerPrincipal mb-3">
       <div className="containerForm">
-      <h1 className="mt-4 tituloPaginas">Agregar Torneo al inicio</h1>
-      <div className="containerDivs border border-primary rounded border-2 mb-3">
+      <h1 className="mt-4 tituloPaginas text-white">Agregar Torneo al inicio</h1>
+      <div className="containerDivs mb-3">
         <form className="row" onSubmit={handleSubmit(onSubmit)}>
           <div className="col-12">
             <label className="form-label fw-bold mt-3" htmlFor="lugarDelTorneo">

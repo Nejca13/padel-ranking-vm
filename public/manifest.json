@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Padel Ranking",
+  "name": "El ranking del padel en el valle medio",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "ranking.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "ranking.ico",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "ranking.ico",
       "type": "image/png",
       "sizes": "512x512"
     }

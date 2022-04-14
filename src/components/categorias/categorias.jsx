@@ -1,4 +1,5 @@
 import uniqid from "uniqid";
+import React from "react";
 
 const Categorias = (props) => {
     const cat = props.players.filter((item) => item.categoria === props.categoria );
@@ -7,9 +8,9 @@ const Categorias = (props) => {
         <div>
             {cat.length > 0 ?
           (
-        <div>
-        <div className="bg-black container-fluid mx-0">
-          <p className="text-white-50 fs-4 text-center mb-0 font-monospace pt-1">{props.categoria[0]}° CAT</p>
+        <div className="categoriasDiv">
+        <div className="bg-primary mx-0 categoria">
+          <p className="text-dark-50 fs-4 text-center mb-0 font-monospace pt-1"><strong>{props.categoria[0]}° CAT</strong></p>
         </div>
         <div className="cards">
         {
@@ -29,7 +30,7 @@ const Categorias = (props) => {
                     </span>
                   </p>
                   <img
-                    className="rounded-circle border border-dark border-3"
+                    className="rounded-circle border border-dark border-3 imgPlayer"
                     src={item.foto}
                     width="200"
                     height="200"

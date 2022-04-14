@@ -1,5 +1,6 @@
 import ListaDeTorneos from "./listaDeTorneos";
 import mercadoPago from "../img/MercadoPago.svg";
+import React from "react";
 
 const Home = () => {
   return (

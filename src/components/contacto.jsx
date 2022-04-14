@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import {
   faWhatsapp,
   faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 const Contacto = () => {
   return (
-    <div className="mt-4 mx-3">
+    <div className="my-4 mx-3 bg-white p-2 contactoDiv">
       <h1>Hola padeleros del Valle Medio!</h1>
       <p>
         Les dejo un enlace a Messenger y otro a Whatsapp para que comuniquen
@@ -28,7 +28,7 @@ const Contacto = () => {
           <FontAwesomeIcon icon={faFacebookMessenger} />
         </a>
         <a
-          href="https://api.whatsapp.com/send?phone=+542946410256&text=Quiero Tengo un problema."
+          href="https://api.whatsapp.com/send?phone=+542984406895&text=Tengo un problema."
           className="whatsapp"
         >
           <FontAwesomeIcon icon={faWhatsapp} />

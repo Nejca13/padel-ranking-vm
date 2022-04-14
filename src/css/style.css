@@ -1,3 +1,7 @@
+body {
+  background: repeat top/100% url("../img/bg.png");
+}
+
 .containerPrincipal {
   display: grid;
 
@@ -9,6 +13,30 @@
   padding: 30px;
   height: fit-content;
   width: 70%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 2px 15px;
+}
+
+.contactoDiv{
+  border-radius: 20px;
+  box-shadow: 0px 2px 15px;
+}
+
+.categoriasDiv{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.categoria {
+  box-shadow: 0px 2px 15px;
+  width: 50%;
+}
+
+.imgPlayer {
+  box-shadow: 0px 2px 15px;
 }
 
 .containerForm {
@@ -73,9 +101,9 @@
 
 .cropperDiv {
   position: absolute;
-  width: 50%;
+  width: 90%;
   bottom: 5%;
-  left: 25%;
+  left: 5%;
   background-color: rgb(0, 0, 0, 0.5);
   z-index: 10;
 }
@@ -89,6 +117,7 @@
 
 .playerCard {
   width: 280px;
+  background: white;
 }
 
 .cardTitle {
@@ -119,28 +148,88 @@
   transition: all ease 0.4s;
 }
 
-.whatsapp{
+.whatsapp {
   color: #00bb2d;
   font-size: 45px;
 }
 
-.whatsapp:hover{
+.whatsapp:hover {
   font-size: 55px;
   color: #00bb2d;
-  transition: all ease .4s;
+  transition: all ease 0.4s;
 }
 
-.saludo{
+.saludo {
   color: #3b5998;
 }
 
 .creador {
-  color: rgb(197, 128, 0);
+  color: rgb(255, 255, 255);
 }
 
 .botonRecortar {
   z-index: 10;
 }
+
+.botonArriba {
+  border-radius: 50px;
+  border-color: #60C5D2; ;
+  padding: 10px;
+  background: #60C5D2;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+.buscador{
+  width: fit-content;
+}
+
+.loginDiv{
+  height: 60vh;
+}
+
+.ingresoConGoogle{
+  border-top: 5px solid rgb(66, 133, 244);
+  border-right: 5px solid rgb(219 68 55);
+  border-bottom: 5px solid rgb(244 180 0);
+  border-left: 5px solid rgb(15 157 88);
+  border-radius: 10px;
+  color: rgb(66, 133, 244);
+  background-color: white;
+  font-weight: bold;
+}
+
+.iconoGoogle{
+  margin-right: 10px;
+}
+
+.ingresoConFacebook{
+  border-radius: 10px;
+  border: solid 5px #3b5998;
+  background-color: #3b5998;
+  color: white;
+}
+
+.ingresoConFacebook:hover{
+  background-color: #4a6fc0;
+  color: white;
+}
+
+.nav-link:focus{
+  color: black;
+  border-bottom: 2px solid white;
+}
+
+.iconoFacebook{
+  font-size: 20px;
+  margin-right: 10px;
+}
+
 
 /*------------------------------------MEDIAQUERY----------------*/
 
@@ -165,8 +254,23 @@
   .cropperDiv {
     position: absolute;
     width: 90%;
-    bottom: 5%;
+    bottom: 10%;
     left: 5%;
     background-color: rgb(0, 0, 0, 0.5);
+  }
+
+  .botonArriba {
+    border-radius: 50px;
+    border-color: #60C5D2; ;
+    padding: 5px;
+    background: #60C5D2;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    z-index: 20;
+    width: fit-content;
   }
 }

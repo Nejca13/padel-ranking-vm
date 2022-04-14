@@ -1,5 +1,5 @@
-import dataBase from "../firebase";
-import {useEffect, useState} from 'react';
+import {dataBase} from "../firebase";
+import React, {useEffect, useState} from 'react';
 import { collection, getDocs } from "firebase/firestore";
 import uniqid from 'uniqid';
 
@@ -24,8 +24,8 @@ const ListaDeTorneos = () => {
         torneos.length > 0 ? (torneos.map((item) => (
           <div key={uniqid()} className="mb-5">
             <div className="bannerTorneo">
-            <h4 className="text-center">{item.lugarDelTorneo} {item.categorias}</h4>
-            <p className="text-dark">{item.fechaTorneo}</p>
+            <h4 className="text-center text-white">{item.lugarDelTorneo} {item.categorias}</h4>
+            <p className="text-white">{item.fechaTorneo}</p>
             <img className="border border-dark border-3" src={item.foto} width="400" height="400" alt=""/>
             </div>
           </div>

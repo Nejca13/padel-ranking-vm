@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "../css/style.css";
 import { setDoc, doc } from "firebase/firestore";
-import dataBase from "../firebase";
+import {dataBase} from "../firebase";
 import {
   getStorage,
   ref,
@@ -9,12 +9,12 @@ import {
   getDownloadURL,
   uploadBytesResumable
 } from "firebase/storage";
-import { useState } from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-const FormularioRanking = () => {
+const FormularioRanking = (props) => {
   const [playerImg, setPlayerImg] = useState("");
   const [boton, setBoton] = useState(true);
   const [carga, setCarga] = useState(0);
@@ -93,7 +93,9 @@ const FormularioRanking = () => {
       foto: playerImg,
       categoria: data.categoria,
       genero: data.genero,
-      localidad: data.localidad}
+      localidad: data.localidad,
+      email: props.email
+    }
     );
     e.target.reset();
     setPlayerImg("");
@@ -147,8 +149,8 @@ const FormularioRanking = () => {
        
       <div className="containerForm">
       
-      <h2 className="mt-4 tituloPaginas">Padel Ranking Valle Medio</h2>
-      <div className="containerDivs mb-4 border border-primary rounded border-2">
+      <h1 className="mt-4 tituloPaginas text-white">Crea tu perfil de jugador</h1>
+      <div className="containerDivs mb-4">
       
         <form className="row g-2" onSubmit={handleSubmit(onSubmit)}>
           <div className="col-md-6">
