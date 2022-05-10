@@ -6,10 +6,11 @@ import ListaDePlayers from "./components/listaDePlayers";
 import Navbar1 from "./components/navbar.jsx";
 import Home from "./components/Inicio.jsx";
 import Contacto from "./components/contacto";
-import BotonArriba from "./components/botonArriba";
 import Login from "./components/login";
 import Perfil from "./components/perfil";
-//import Footer from "./components/footer";
+import Torneo from "./components/Torneo";
+import ControlPanel from "./components/cPanel";
+
 
 const Footer = React.lazy(() => import("./components/footer"));
 
@@ -24,9 +25,10 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/torneo" element={<Torneo/>} />
+          <Route path="/cPanel" element={<ControlPanel/>}/>
         </Routes>
         <Suspense fallback={<div>Cargando...</div>}>
-          <BotonArriba />
           <Footer />
         </Suspense>
       </BrowserRouter>

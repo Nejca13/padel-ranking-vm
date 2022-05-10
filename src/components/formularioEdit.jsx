@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import "../css/style.css";
-import { setDoc, doc } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
 import { dataBase } from "../firebase";
 import {
   getStorage,
@@ -9,41 +9,36 @@ import {
   getDownloadURL,
   uploadBytesResumable,
 } from "firebase/storage";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
-const FormularioRanking = (props) => {
-  const [playerImg, setPlayerImg] = useState("");
-  const [boton, setBoton] = useState(true);
+
+const FormularioEdit = (props) => {
+  const [player] = props.player;
+  const [playerImg, setPlayerImg] = useState(player.foto);
   const [carga, setCarga] = useState(0);
   const [imagenBruta, setImagenBruta] = useState(null);
-  const [crop, setCrop] = useState({
-    aspect: 1 / 1,
-    unit: "%",
-    width: 50,
-    height: 50,
-    x: 25,
-    y: 25,
-  });
-  const [imagenId, setImagenId] = useState(null)
+  const [crop, setCrop] = useState({ aspect: 1 / 1 });
   const [imagen, setImagen] = useState(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+
   const imagenHandler = (e) => {
     setImagenBruta(URL.createObjectURL(e.target.files[0]));
   };
 
-  const Uploader = async (blob) => {
-    if (blob) {
+  const Uploader = async (t) => {
+    if (t) {
       const storage = getStorage();
-      const storageRef = ref(storage, blob.name);
-      const uploadTask = uploadBytesResumable(storageRef, blob);
+      const storageRef = ref(storage, t.name);
+      const uploadTask = uploadBytesResumable(storageRef, t);
 
       uploadTask.on(
         "state_changed",
@@ -51,40 +46,35 @@ const FormularioRanking = (props) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setCarga(progress);
+          console.log(progress)
         },
         (error) => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {});
         }
       );
-      await uploadBytes(storageRef, blob).then((snapshot) => {});
-      const url = await getDownloadURL(ref(storage, blob.name));
-      setImagenId(blob.name)
+      await uploadBytes(storageRef, t).then((snapshot) => {});
+      const url = await getDownloadURL(ref(storage, t.name));
       setPlayerImg(url);
-      setBoton(false);
     }
   };
 
   const onSubmit = async (data, e) => {
-    const playerId =
-      data.firstName.toUpperCase() + data.lastName.toUpperCase() + uniqid();
-    await setDoc(doc(dataBase, "players", playerId), {
+    const id = player.id;
+    const documento = doc(dataBase, "players", id);
+    await updateDoc(documento, {
       firstName: data.firstName.toUpperCase().trim(),
       lastName: data.lastName.toUpperCase().trim(),
-      id: playerId,
       position: data.position,
       foto: playerImg,
       categoria: data.categoria,
       genero: data.genero,
       localidad: data.localidad,
-      email: props.email,
-      imagenId: imagenId
     });
     e.target.reset();
     setPlayerImg("");
     setCarga(0);
-    setBoton(true);
-    window.location.reload();
+    window.location.reload()
   };
 
   const getCroppedImg = async (e) => {
@@ -116,23 +106,24 @@ const FormularioRanking = (props) => {
     canvas.toBlob(
       (blob) => {
         blob.name = uniqid();
-        Uploader(blob);
+        Uploader(blob)
       },
       "image/jpeg",
       1
     );
     setImagenBruta(null);
+    ;
   };
 
   useEffect(() => {
-    Uploader();
-  }, []);
+      Uploader()
+  }, [])
 
   return (
     <div className="containerPrincipal">
       <div className="containerForm">
         <h1 className="mt-4 tituloPaginas text-white">
-          Crea tu perfil de jugador
+          Edita tu perfil
         </h1>
         <div className="containerDivs mb-4">
           <form className="row g-2" onSubmit={handleSubmit(onSubmit)}>
@@ -145,6 +136,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa tu Nombre"
                 id="nombre"
                 type="text"
+                defaultValue={player.firstName}
                 {...register("firstName", {
                   required: true,
                   message: "error message",
@@ -165,6 +157,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa tu Apellido"
                 id="apellido"
                 type="text"
+                defaultValue={player.lastName}
                 {...register("lastName", {
                   required: true,
                   message: "error message",
@@ -186,6 +179,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="genero"
                 type="select"
+                defaultValue={player.genero}
                 {...register("genero", {
                   required: true,
                   message: "error message",
@@ -210,6 +204,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="categoria"
                 type="select"
+                defaultValue={player.categoria}
                 {...register("categoria", {
                   required: true,
                   message: "error message",
@@ -236,6 +231,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="position"
                 type="select"
+                defaultValue={player.position}
                 {...register("position", {
                   required: true,
                   message: "error message",
@@ -257,6 +253,7 @@ const FormularioRanking = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="localidad"
                 type="select"
+                defaultValue={player.localidad}
                 {...register("localidad", {
                   required: true,
                   message: "error message",
@@ -296,10 +293,9 @@ const FormularioRanking = (props) => {
             </div>
             <div className="div-submit">
               <input
-                className="btn btn-primary mt-4 float-end"
+                className="btn btn-warning mt-4 float-end"
                 type="submit"
-                value="Cargar Jugador"
-                disabled={boton}
+                value="Editar Jugador"
               />
               {imagenBruta != null ? (
                 <div className="d-flex row align-items-center justify-content-center mt-4 flex-sm-column cropperDiv">
@@ -337,4 +333,4 @@ const FormularioRanking = (props) => {
   );
 };
 
-export default FormularioRanking;
+export default FormularioEdit;

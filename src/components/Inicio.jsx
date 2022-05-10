@@ -1,11 +1,17 @@
-import ListaDeTorneos from "./listaDeTorneos";
+//import ListaDeTorneos from "./listaDeTorneos";
 import mercadoPago from "../img/MercadoPago.svg";
 import React from "react";
+import Bienvenida from "./bienvenida";
 
 const Home = () => {
   return (
     <div className="containerHome">
-      <ListaDeTorneos />
+      {
+        //<ListaDeTorneos />
+      }
+      <>
+      <Bienvenida/>
+      </>
       <div className="position-relative bottom-0 donantes pb-3">
         <form
           className=""

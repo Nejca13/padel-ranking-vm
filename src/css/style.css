@@ -21,6 +21,12 @@ body {
 .contactoDiv{
   border-radius: 20px;
   box-shadow: 0px 2px 15px;
+  width: max-content;
+}
+
+.bienvenidaDiv{
+  border-radius: 20px;
+  box-shadow: 0px 2px 15px;
 }
 
 .categoriasDiv{
@@ -220,17 +226,22 @@ body {
   color: white;
 }
 
-.nav-link:focus{
-  color: black;
-  border-bottom: 2px solid white;
-}
-
 .iconoFacebook{
   font-size: 20px;
   margin-right: 10px;
 }
 
+.tablasTorneo{
+  width: 70%;
+}
 
+.contador{
+  width: max-content;
+}
+
+.cPanelDiv{
+  width: 70%;
+}
 /*------------------------------------MEDIAQUERY----------------*/
 
 @media (max-width: 767px) {

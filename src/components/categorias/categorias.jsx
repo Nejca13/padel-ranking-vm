@@ -20,7 +20,7 @@ const Categorias = (props) => {
                 <div className="mx-3 my-3 player">
                   <div className="">
                     <h5 className="text-center">
-                      {item.firstName} {item.lastName}
+                    {item.firstName} {item.lastName}
                     </h5>
                   </div>
                   <p className="text-dark fs-5 d-flex justify-content-between container-fluid">
