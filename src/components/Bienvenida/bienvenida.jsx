@@ -15,7 +15,7 @@ const Bienvenida = () => {
         <strong>Tener encuenta que para cargar el perfil la foto es requerida, de lo contrario no se cargara.</strong>
       </p>
       {
-        !userApp && <BtnLogin/>
+        !userApp.id && <BtnLogin/>
       }
     </div>
   )

@@ -22,7 +22,7 @@ const SingOut = () => {
   }
   return (
     <div className={styles.signOut}>
-      <button onClick={cerrarSesion}>Cerrar Sesion</button>
+      <button onClick={cerrarSesion}>Cerrar</button>
     </div>
   )
 }

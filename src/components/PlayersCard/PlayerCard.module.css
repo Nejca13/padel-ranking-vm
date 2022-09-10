@@ -10,11 +10,11 @@
     text-align: center;
     padding: 10px;
     height: 360px;
-    margin: 30px;
+    margin: 30px auto;
 }
 
 .player{
-    width: 100%;
+    max-width: 100%;
 }
 
 .player p{

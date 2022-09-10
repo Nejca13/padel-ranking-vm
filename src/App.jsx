@@ -13,7 +13,7 @@ import { UserProvider } from "./components/Auth/Auth"
 function App() {
   return (
     <UserProvider>
-      <main>
+      <div>
         <BrowserRouter>
           <Navbar1 />
           <Routes>
@@ -26,7 +26,7 @@ function App() {
             <Route path="/cPanel" element={<ControlPanel />} />
           </Routes>
         </BrowserRouter>
-      </main>
+      </div>
     </UserProvider>
   )
 }

@@ -4,6 +4,7 @@
     text-shadow: 2px 2px 10px black;
     height: 10vh;
     border-bottom: 1px solid var(--h6-color);
+    overflow: hidden;
 }
 
 .navLink, b{
@@ -30,4 +31,10 @@
     color: rgb(204, 204, 204);
     font-weight: bold;
     text-shadow: none;
+}
+
+@media (max-width: 767px){
+    .nav img{
+        display: none;
+    }
 }
