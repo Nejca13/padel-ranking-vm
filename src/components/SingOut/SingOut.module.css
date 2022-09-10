@@ -1,0 +1,5 @@
+.signOut button{
+    background-color: var(--del-color);
+    border-color: var(--del-color);
+    padding: 5px;
+}

@@ -1,14 +1,14 @@
-import React from "react";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from "../firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { app } from "../firebase"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const google = new GoogleAuthProvider();
-  const navigate = useNavigate();
-  const auth = getAuth(app);
+  const google = new GoogleAuthProvider()
+  const navigate = useNavigate()
+  const auth = getAuth(app)
 
   const loginGoogle = () => {
     signInWithPopup(auth, google)
@@ -16,15 +16,15 @@ const Login = () => {
         //const credential = GoogleAuthProvider.credentialFromResult(result);
         //const token = credential.accessToken;
         //const user = result.user;
-        navigate("/perfil");
+        navigate("/perfil")
       })
       .catch((error) => {
         /*const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);*/
-      });
-  };
+      })
+  }
 
   return (
     <div className="container d-flex justify-content-center my-5 loginDiv">
@@ -45,7 +45,7 @@ const Login = () => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

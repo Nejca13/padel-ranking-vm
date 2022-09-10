@@ -1,0 +1,11 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.categoria{
+    text-align: center;
+}

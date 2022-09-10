@@ -1,67 +1,64 @@
-import { useForm } from "react-hook-form";
-import "../css/style.css";
-import { updateDoc, doc } from "firebase/firestore";
-import { dataBase } from "../firebase";
+import { useForm } from "react-hook-form"
+import { updateDoc, doc } from "firebase/firestore"
+import { dataBase } from "../../firebase"
 import {
   getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
-} from "firebase/storage";
-import React, { useEffect, useState } from "react";
-import uniqid from "uniqid";
-import ReactCrop from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
+} from "firebase/storage"
+import React, { useEffect, useState } from "react"
+import uniqid from "uniqid"
+import ReactCrop from "react-image-crop"
+import "react-image-crop/dist/ReactCrop.css"
+import { useUserContext } from "./../Auth/Auth"
 
-
-const FormularioEdit = (props) => {
-  const [player] = props.player;
-  const [playerImg, setPlayerImg] = useState(player.foto);
-  const [carga, setCarga] = useState(0);
-  const [imagenBruta, setImagenBruta] = useState(null);
-  const [crop, setCrop] = useState({ aspect: 1 / 1 });
-  const [imagen, setImagen] = useState(null);
+const FormularioEdit = () => {
+  const userApp = useUserContext()
+  const [playerImg, setPlayerImg] = useState(userApp.foto)
+  const [carga, setCarga] = useState(0)
+  const [imagenBruta, setImagenBruta] = useState(null)
+  const [crop, setCrop] = useState({ aspect: 1 / 1 })
+  const [imagen, setImagen] = useState(null)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-
+  } = useForm()
 
   const imagenHandler = (e) => {
-    setImagenBruta(URL.createObjectURL(e.target.files[0]));
-  };
+    setImagenBruta(URL.createObjectURL(e.target.files[0]))
+  }
 
   const Uploader = async (t) => {
     if (t) {
-      const storage = getStorage();
-      const storageRef = ref(storage, t.name);
-      const uploadTask = uploadBytesResumable(storageRef, t);
+      const storage = getStorage()
+      const storageRef = ref(storage, t.name)
+      const uploadTask = uploadBytesResumable(storageRef, t)
 
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setCarga(progress);
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          setCarga(progress)
           console.log(progress)
         },
         (error) => {},
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {});
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {})
         }
-      );
-      await uploadBytes(storageRef, t).then((snapshot) => {});
-      const url = await getDownloadURL(ref(storage, t.name));
-      setPlayerImg(url);
+      )
+      await uploadBytes(storageRef, t).then((snapshot) => {})
+      const url = await getDownloadURL(ref(storage, t.name))
+      setPlayerImg(url)
     }
-  };
+  }
 
   const onSubmit = async (data, e) => {
-    const id = player.id;
-    const documento = doc(dataBase, "players", id);
+    const documento = doc(dataBase, "players", userApp.id)
     await updateDoc(documento, {
       firstName: data.firstName.toUpperCase().trim(),
       lastName: data.lastName.toUpperCase().trim(),
@@ -70,26 +67,26 @@ const FormularioEdit = (props) => {
       categoria: data.categoria,
       genero: data.genero,
       localidad: data.localidad,
-    });
-    e.target.reset();
-    setPlayerImg("");
-    setCarga(0);
+    })
+    e.target.reset()
+    setPlayerImg("")
+    setCarga(0)
     window.location.reload()
-  };
+  }
 
   const getCroppedImg = async (e) => {
-    e.preventDefault();
-    const canvas = document.createElement("canvas");
-    const scaleX = imagen.naturalWidth / imagen.width;
-    const scaleY = imagen.naturalHeight / imagen.height;
-    canvas.width = crop.width;
-    canvas.height = crop.height;
-    const ctx = canvas.getContext("2d");
-    const pixelRatio = window.devicePixelRatio;
-    canvas.width = crop.width * pixelRatio;
-    canvas.height = crop.height * pixelRatio;
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    ctx.imageSmoothingQuality = "high";
+    e.preventDefault()
+    const canvas = document.createElement("canvas")
+    const scaleX = imagen.naturalWidth / imagen.width
+    const scaleY = imagen.naturalHeight / imagen.height
+    canvas.width = crop.width
+    canvas.height = crop.height
+    const ctx = canvas.getContext("2d")
+    const pixelRatio = window.devicePixelRatio
+    canvas.width = crop.width * pixelRatio
+    canvas.height = crop.height * pixelRatio
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+    ctx.imageSmoothingQuality = "high"
 
     ctx.drawImage(
       imagen,
@@ -101,30 +98,27 @@ const FormularioEdit = (props) => {
       0,
       crop.width,
       crop.height
-    );
+    )
 
     canvas.toBlob(
       (blob) => {
-        blob.name = uniqid();
+        blob.name = uniqid()
         Uploader(blob)
       },
       "image/jpeg",
       1
-    );
-    setImagenBruta(null);
-    ;
-  };
+    )
+    setImagenBruta(null)
+  }
 
   useEffect(() => {
-      Uploader()
+    Uploader()
   }, [])
 
   return (
     <div className="containerPrincipal">
       <div className="containerForm">
-        <h1 className="mt-4 tituloPaginas text-white">
-          Edita tu perfil
-        </h1>
+        <h1 className="mt-4 tituloPaginas text-white">Edita tu perfil</h1>
         <div className="containerDivs mb-4">
           <form className="row g-2" onSubmit={handleSubmit(onSubmit)}>
             <div className="col-md-6">
@@ -136,7 +130,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa tu Nombre"
                 id="nombre"
                 type="text"
-                defaultValue={player.firstName}
+                defaultValue={userApp.firstName}
                 {...register("firstName", {
                   required: true,
                   message: "error message",
@@ -157,7 +151,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa tu Apellido"
                 id="apellido"
                 type="text"
-                defaultValue={player.lastName}
+                defaultValue={userApp.lastName}
                 {...register("lastName", {
                   required: true,
                   message: "error message",
@@ -179,7 +173,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="genero"
                 type="select"
-                defaultValue={player.genero}
+                defaultValue={userApp.genero}
                 {...register("genero", {
                   required: true,
                   message: "error message",
@@ -204,7 +198,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="categoria"
                 type="select"
-                defaultValue={player.categoria}
+                defaultValue={userApp.categoria}
                 {...register("categoria", {
                   required: true,
                   message: "error message",
@@ -231,7 +225,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="position"
                 type="select"
-                defaultValue={player.position}
+                defaultValue={userApp.position}
                 {...register("position", {
                   required: true,
                   message: "error message",
@@ -253,7 +247,7 @@ const FormularioEdit = (props) => {
                 placeholder="Ingresa de que lado jugas"
                 id="localidad"
                 type="select"
-                defaultValue={player.localidad}
+                defaultValue={userApp.localidad}
                 {...register("localidad", {
                   required: true,
                   message: "error message",
@@ -330,7 +324,7 @@ const FormularioEdit = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FormularioEdit;
+export default FormularioEdit

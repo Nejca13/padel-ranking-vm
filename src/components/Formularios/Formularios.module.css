@@ -1,0 +1,25 @@
+.container h2{
+    text-align: center;
+}
+
+.cropperDiv{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.crop {
+    width: 400px;
+}
+
+@media (max-width: 768px) {
+    .cropperDiv{
+        top: 50%;
+    }
+}

@@ -1,0 +1,53 @@
+.playerCard{
+    background-color: var(--background);
+    box-shadow: 2px 2px 10px black;
+    border-radius: 5px;
+    text-shadow: 2px 2px 10px black;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    height: 360px;
+    margin: 30px;
+}
+
+.player{
+    width: 100%;
+}
+
+.player p{
+    margin: 0;
+}
+
+.player img{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    box-shadow: 2px 2px 10px black;
+    margin: 20px 0;
+}
+
+.infoDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.bottomInfo{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+    align-items: baseline;
+}
+
+.bottomInfo .tooltip{
+    border: none;
+    cursor: pointer;
+}
+
+.icon{
+    color: var(--ins-color);
+    font-size: 25px;
+}

@@ -1,5 +1,5 @@
 body {
-  background: repeat top/100% url("../img/bg.png");
+  background-color: black;
 }
 
 .containerPrincipal {
@@ -123,7 +123,10 @@ body {
 
 .playerCard {
   width: 280px;
-  background: white;
+  background: rgb(44, 43, 43);
+  color: white;
+  margin: 30px;
+  max-height: 350px;
 }
 
 .cardTitle {
@@ -253,6 +256,12 @@ body {
     display: none;
   }
 
+  .container-filtro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .containerDivs {
     margin: 20px 10px;
     width: 90%;
@@ -260,6 +269,16 @@ body {
 
   form {
     width: 100%;
+  }
+
+  div.playerCard{
+    width: 40%;
+    margin: 0;
+  }
+
+  .imgPlayer{
+    width: 100%;
+    height: 100%;
   }
 
   .cropperDiv {

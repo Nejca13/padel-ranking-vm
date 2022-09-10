@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from "react";
-import Categorias from "./categorias/categorias";
+import React, { useState, useEffect } from "react"
+import Categorias from "../categorias/categorias"
+import styles from "./Buscador.module.css"
 
 const Buscador = (props) => {
-  const [jugadoresFiltrados, setJugadoresFiltrados] = useState([]);
-  const [totalJugadores, setTotalJugadores] = useState([]);
-  const [genero, setGenero] = useState(null);
-  const [ciudad, setCiudad] = useState(null);
-  const [cat, setCat] = useState(null);
-  const [nombre, setNombre] = useState(null);
-
- /* const error = [{
-    firstName: "JUGADOR NO",
-    lastName: "ENCONTRADO",
-    position: "VALOR NO ENCONTRADO",
-    foto: imgError,
-    categoria: "ERROR",
-    genero: "VALOR NO ENCONTRADO",
-    localidad: "VALOR NO ENCONTRADO"
-  }];*/
+  const [jugadoresFiltrados, setJugadoresFiltrados] = useState([])
+  const [totalJugadores, setTotalJugadores] = useState([])
+  const [genero, setGenero] = useState(null)
+  const [ciudad, setCiudad] = useState(null)
+  const [cat, setCat] = useState(null)
+  const [nombre, setNombre] = useState(null)
+  const players = props.players
 
   const buttonete = () => {
-    setJugadoresFiltrados(props.players);
-    setCat(null);
-    setGenero(null);
-    setCiudad(null);
-  };
+    setJugadoresFiltrados(props.players)
+    setCat(null)
+    setGenero(null)
+    setCiudad(null)
+  }
 
   const filtrar = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (nombre !== null) {
-      const filtroNombre = totalJugadores.filter((item) =>
-        item.firstName.includes(nombre.toUpperCase()) ||
-        item.lastName.includes(nombre.toUpperCase()))
-           setJugadoresFiltrados(filtroNombre)
+      const filtroNombre = totalJugadores.filter(
+        (item) =>
+          item.firstName.includes(nombre.toUpperCase()) ||
+          item.lastName.includes(nombre.toUpperCase())
+      )
+      setJugadoresFiltrados(filtroNombre)
     }
     if (cat !== null && genero !== null && ciudad !== null) {
       const filtro = props.players.filter(
@@ -40,64 +34,56 @@ const Buscador = (props) => {
           item.categoria === cat &&
           item.localidad === ciudad &&
           item.genero === genero
-      );
-      setJugadoresFiltrados(filtro);
+      )
+      setJugadoresFiltrados(filtro)
     }
     if (cat !== null && genero !== null && ciudad === null) {
       const filtro = props.players.filter(
         (item) => item.categoria === cat && item.genero === genero
-      );
-      setJugadoresFiltrados(filtro);
+      )
+      setJugadoresFiltrados(filtro)
     }
     if (genero !== null && ciudad !== null && cat === null) {
       const filtro = props.players.filter(
         (item) => item.localidad === ciudad && item.genero === genero
-      );
-      setJugadoresFiltrados(filtro);
+      )
+      setJugadoresFiltrados(filtro)
     }
     if (cat !== null && ciudad !== null && genero === null) {
       const filtro = props.players.filter(
         (item) => item.categoria === cat && item.localidad === ciudad
-      );
-      setJugadoresFiltrados(filtro);
+      )
+      setJugadoresFiltrados(filtro)
     }
     if (cat !== null && ciudad === null && genero === null) {
-      const filtro = props.players.filter((item) => item.categoria === cat);
-      setJugadoresFiltrados(filtro);
+      const filtro = props.players.filter((item) => item.categoria === cat)
+      setJugadoresFiltrados(filtro)
     }
     if (cat === null && ciudad !== null && genero === null) {
-      const filtro = props.players.filter((item) => item.localidad === ciudad);
-      setJugadoresFiltrados(filtro);
+      const filtro = props.players.filter((item) => item.localidad === ciudad)
+      setJugadoresFiltrados(filtro)
     }
     if (cat === null && ciudad === null && genero !== null) {
-      const filtro = props.players.filter((item) => item.genero === genero);
-      setJugadoresFiltrados(filtro);
+      const filtro = props.players.filter((item) => item.genero === genero)
+      setJugadoresFiltrados(filtro)
     }
-  };
+  }
   useEffect(() => {
-    setTotalJugadores(props.players);
-  });
+    setTotalJugadores(players)
+  }, [players])
 
   return (
-    <div>
-      <div className="row mb-2">
-        <form onSubmit={filtrar} onKeyUp={filtrar} className="row">
-          <select
-            className="form-select mx-3 col"
-            aria-label="Default select example"
-            onChange={(e) => setGenero(e.target.value)}
-          >
+    <div className={styles.container}>
+      <div className={styles.buscador}>
+        <form onSubmit={filtrar} onKeyUp={filtrar} className={styles.form}>
+          <select className="" onChange={(e) => setGenero(e.target.value)}>
             <option defaultValue={null} value={null}>
               Genero
             </option>
             <option value="Hombre">Hombres</option>
             <option value="Mujer">Mujeres</option>
           </select>
-          <select
-            className="form-select mx-3 col"
-            aria-label="Default select example"
-            onChange={(e) => setCat(e.target.value)}
-          >
+          <select className="" onChange={(e) => setCat(e.target.value)}>
             <option defaultValue={null} value={null}>
               Categoria
             </option>
@@ -108,8 +94,7 @@ const Buscador = (props) => {
             <option value="4ta">4ta</option>
           </select>
           <select
-            className="form-select mx-3 col"
-            aria-label="Default select example"
+            className=""
             placeholder="Localidades"
             onChange={(e) => setCiudad(e.target.value)}
           >
@@ -125,34 +110,23 @@ const Buscador = (props) => {
             <option value="Luis Beltran">Luis Beltran</option>
             <option value="Rio Colorado">Rio Colorado</option>
           </select>
-          <div className="d-flex justify-content-center mt-3 ">
+          <div className="">
             <input
               id="filtrarNombre"
               type="text"
               placeholder="Buscar jugador por Nombre o Apellido"
-              className="col mx-3 justify-content-center form-control buscador"
+              style={{ width: "90%" }}
               onChange={(e) => setNombre(e.target.value)}
             />
           </div>
-          <div className="d-flex justify-content-center my-3">
-            <button
-              className="btn btn-outline-info"
-              type="reset"
-              onClick={filtrar}
-            >
-              Filtrar
-            </button>
-            <button
-              className="btn btn-outline-danger mx-3"
-              type="reset"
-              onClick={buttonete}
-            >
-              Reset
-            </button>
-          </div>
+          <button type="reset" onClick={filtrar}>
+            Filtrar
+          </button>
+          <button type="reset" onClick={buttonete}>
+            Reset
+          </button>
         </form>
       </div>
-
       {jugadoresFiltrados.length !== 0 ? (
         <div>
           <Categorias players={jugadoresFiltrados} categoria="4ta" />
@@ -172,7 +146,7 @@ const Buscador = (props) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Buscador;
+export default Buscador
