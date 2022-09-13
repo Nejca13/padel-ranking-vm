@@ -7,6 +7,7 @@ import { useUserContext } from "../Auth/Auth"
 import styles from './Perfil.module.css'
 import { deleteUser } from "../Auth/Server/Crud"
 import PlayerCard from "../PlayersCard/PlayerCard"
+import Loader from "../Loader/Loader"
 
 const Perfil = () => {
   const userApp = useUserContext()
@@ -24,17 +25,7 @@ const Perfil = () => {
   return (
     <div className={styles.container}>
       {!userApp.id ? (
-        <div>
-          <div className={styles.msgBienvenida}>
-            <h1>¡Hola! {userApp.displayName}</h1>
-            <p>Parece que no tenes ningun jugador asignado a esta cuenta, agregate!</p>
-            <p>
-              Asegurate de seleccionar el area de la foto a recortar para que se
-              suba correctamente!
-            </p>
-          </div>
-          <FormularioRanking user={userApp} />
-        </div>
+        <Loader />
       ) : (
         <div>
           <div className={styles.msgBienvenida}>
@@ -44,15 +35,21 @@ const Perfil = () => {
             {edit ? (
               <span></span>
             ) : (
-              
               <PlayerCard player={userApp}/>
             )}
             <div>
-                  <button onClick={editar} href="editar" data-tooltip={edit === true ? "Dejar de Editar" : "Editar Jugador"}>
-                    <FontAwesomeIcon icon={edit ? faClose : faEdit} />
+                  <button 
+                  onClick={editar} 
+                  href="editar" 
+                  data-tooltip={edit === true ? "Dejar de Editar" : "Editar Jugador"}>
+                    <FontAwesomeIcon icon={edit ? faClose : faEdit} className={styles.editIcon}/>
                   </button>
-                  <button onClick={() => deleteUser(userApp)} data-tooltip="Borrar jugador">
-                    <FontAwesomeIcon icon={faTrash} />
+                  <button 
+                  onClick={() => deleteUser(userApp)} 
+                  data-tooltip="Borrar jugador"
+                  className={styles.deleteButton}
+                  >
+                    <FontAwesomeIcon icon={faTrash} className={styles.deleteIcon}/>
                   </button>
             </div>
             {edit && <FormularioRanking user={userApp} editStatus={edit}/>}

@@ -1,6 +1,24 @@
-import { dataBase } from "../../../firebase"
-import { setDoc, doc, deleteDoc, updateDoc } from "firebase/firestore"
+import { dataBase, app } from "../../../firebase"
+import { setDoc, doc, deleteDoc, updateDoc, getDoc } from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
+import { getAuth, onAuthStateChanged } from "@firebase/auth"
+import { useNavigate } from "react-router-dom"
+
+export const GetUser = async () => {
+  const auth = getAuth(app)
+  const navigate = useNavigate()
+    onAuthStateChanged(auth, async (user) => {
+      if(user){
+        const docRef = doc(dataBase, "PRVM_DB_PLAYERS", user.uid)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          navigate('/perfil')
+        } else {
+          navigate('/crearcuenta')
+        }
+      }
+    })
+}
 
 export const addUser = async (newPlayer) => {
   await setDoc(doc(dataBase, "PRVM_DB_PLAYERS", newPlayer.id), {

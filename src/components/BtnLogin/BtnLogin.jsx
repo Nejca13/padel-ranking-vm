@@ -3,17 +3,16 @@ import { app } from "../../firebase"
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "@firebase/auth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
-import { useNavigate } from 'react-router-dom'
+import { GetUser } from '../Auth/Server/Crud'
 
 const BtnLogin = () => {
     const google = new GoogleAuthProvider()
     const auth = getAuth(app)
-    const navigate = useNavigate()
 
-    const loginGoogle = () => {
+    const loginGoogle = async () => {
         signInWithPopup(auth, google)
             .then((result) => {
-                navigate('/perfil')
+                GetUser()
             })
             .catch((error) => {
                 console.log(error)

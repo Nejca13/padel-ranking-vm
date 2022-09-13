@@ -110,15 +110,15 @@ const Buscador = (props) => {
             <option value="Luis Beltran">Luis Beltran</option>
             <option value="Rio Colorado">Rio Colorado</option>
           </select>
-          <div className="">
+          
             <input
               id="filtrarNombre"
               type="text"
               placeholder="Buscar jugador por Nombre o Apellido"
-              style={{ width: "90%" }}
+              style={{ width: "90%", fontSize: "1rem", padding: "5px", height: "--line-height" }}
               onChange={(e) => setNombre(e.target.value)}
             />
-          </div>
+          
           <button type="reset" onClick={filtrar}>
             Filtrar
           </button>

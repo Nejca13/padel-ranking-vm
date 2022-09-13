@@ -6,6 +6,23 @@
     align-items: center;
 }
 
+.cartegoriasDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .categoria{
     text-align: center;
+}
+
+.categoria p strong{
+    font-size: 30px;
+    text-shadow: var(--shadow);
+}
+
+.categoria{
+    border-bottom: 2px solid var(--color);
+    width: 90%;
 }

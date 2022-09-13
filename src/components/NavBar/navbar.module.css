@@ -1,7 +1,7 @@
 .nav{
     padding: 0 30px;
     align-items: center;
-    text-shadow: 2px 2px 10px black;
+    text-shadow: var(--shadow);
     height: 10vh;
     border-bottom: 1px solid var(--h6-color);
     overflow: hidden;
@@ -34,7 +34,7 @@
 }
 
 @media (max-width: 767px){
-    .nav img{
+    .nav .imgDiv{
         display: none;
     }
 }

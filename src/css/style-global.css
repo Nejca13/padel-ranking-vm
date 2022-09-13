@@ -178,6 +178,7 @@ kbd {
 [data-theme="light"] {
   color-scheme: light;
   --background-color: #fff;
+  --shadow: none;
   --color: hsl(205deg, 20%, 32%);
   --h1-color: hsl(205deg, 30%, 15%);
   --h2-color: #24333e;
@@ -282,6 +283,7 @@ kbd {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
     --background-color: #11191f;
+    --shadow: 2px 2px 10px black;
     --color: hsl(205deg, 16%, 77%);
     --h1-color: hsl(205deg, 20%, 94%);
     --h2-color: #e1e6eb;

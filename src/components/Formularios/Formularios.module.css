@@ -18,6 +18,11 @@
     width: 400px;
 }
 
+.container .tooltip{
+    cursor: pointer;
+    border: none;
+}
+
 @media (max-width: 768px) {
     .cropperDiv{
         top: 50%;

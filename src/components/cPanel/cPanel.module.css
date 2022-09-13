@@ -1,0 +1,15 @@
+.opt{
+    display: flex;
+    justify-content: space-between;
+}
+
+.opt button{
+    margin: 0 5px;
+    padding: 0.5rem;
+    line-height: 0;
+}
+
+.btnDelete{
+    background-color: var(--del-color);
+    border-color: var(--del-color);
+}

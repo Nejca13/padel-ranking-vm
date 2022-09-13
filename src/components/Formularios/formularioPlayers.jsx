@@ -14,10 +14,10 @@ import { addUser, updateUser } from "../Auth/Server/Crud"
 import { useUserContext } from "../Auth/Auth"
 import styles from './Formularios.module.css'
 
-const FormularioRanking = ({ user, editStatus }) => {
+const FormularioRanking = ({ editStatus }) => {
   const userApp = useUserContext()
   const [buscaPareja, setBuscaPareja] = useState(null)
-  const [playerImg, setPlayerImg] = useState("")
+  const [playerImg, setPlayerImg] = useState(null)
   const [boton, setBoton] = useState(true)
   const [carga, setCarga] = useState(0)
   const [imagenBruta, setImagenBruta] = useState(null)
@@ -71,16 +71,16 @@ const FormularioRanking = ({ user, editStatus }) => {
     var newPlayer = {
       id: userApp.id,
       email: userApp.email,
-      telefono: data.telefono,
+      telefono: data.telefono.trim(),
       firstName: data.firstName.toUpperCase().trim(),
       lastName: data.lastName.toUpperCase().trim(),
       position: data.position,
-      foto: editStatus === true ? userApp.foto : playerImg,
-      buscaPareja: editStatus === true ? userApp.buscaPareja : buscaPareja,
+      foto: playerImg ? playerImg : userApp.foto || userApp.photoURL,
+      buscaPareja: buscaPareja,
       categoria: data.categoria,
       genero: data.genero,
       localidad: data.localidad,
-      imagenId: editStatus === true ? userApp.imagenId : imagenId,
+      imagenId: imagenId,
     }
     editStatus === true ? updateUser(newPlayer) : addUser(newPlayer)
   }
@@ -124,7 +124,7 @@ const FormularioRanking = ({ user, editStatus }) => {
 
   useEffect(() => {
     Uploader()
-  }, [userApp])
+  }, [userApp, buscaPareja])
 
   return (
     <div className={styles.container}>
@@ -167,8 +167,9 @@ const FormularioRanking = ({ user, editStatus }) => {
               <span>{errors.apellido && errors.apellido.message}</span>
             </div>
             <div>
-              <label htmlFor="telefono">Telefono</label>
+              <label className={styles.tooltip} htmlFor="telefono" data-tooltip="Ingrese el numero sin el 0 y sin el 15, Ejemplo: 2984123123">Telefono</label>
               <input
+              
               defaultValue={editStatus === true ? userApp.telefono : ""}
                 placeholder="Ingresa tu Numero de telefono"
                 id="telefono"
@@ -268,8 +269,17 @@ const FormularioRanking = ({ user, editStatus }) => {
             <div>
               <label htmlFor="buscaPareja">
               <input type="checkbox" id="buscaPareja" name="buscaPareja" role="switch"
-              defaultValue={editStatus === true ? userApp.buscaPareja : ""} 
-              onChange={() => setBuscaPareja(true)} />
+              defaultChecked={editStatus === true ? userApp.buscaPareja : buscaPareja} 
+              onChange={() => {
+                if(document.getElementById("buscaPareja").defaultChecked === false){
+                  setBuscaPareja(true)
+                  return
+                }
+                if(document.getElementById("buscaPareja").defaultChecked === true){
+                  setBuscaPareja(false)
+                  return
+                }
+                }} />
               Busca Pareja
               </label>
             </div>
