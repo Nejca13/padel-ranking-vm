@@ -47,9 +47,11 @@ const Navbar1 = () => {
           </li>
           {window.innerWidth > 768 && (
             <li>
+          <Link to="/perfil">
               <p className={styles.navLink}>
                 <b>Perfil</b>
               </p>
+              </Link>
             </li>
           )}
           <li>
@@ -57,9 +59,11 @@ const Navbar1 = () => {
           </li>
         </ul>
       ) : (
-        <div>
+        <ul style={{ width: "130px"}}>
+          <li>
           <BtnLogin />
-        </div>
+          </li>
+        </ul>
       )}
     </nav>
   )

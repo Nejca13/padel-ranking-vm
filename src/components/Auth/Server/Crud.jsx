@@ -1,5 +1,5 @@
 import { dataBase, app } from "../../../firebase"
-import { setDoc, doc, deleteDoc, updateDoc, getDoc } from "firebase/firestore"
+import { setDoc, doc, deleteDoc, updateDoc, getDoc, getDocs, collection } from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 import { getAuth, onAuthStateChanged } from "@firebase/auth"
 import { useNavigate } from "react-router-dom"
@@ -18,6 +18,18 @@ export const GetUser = async () => {
         }
       }
     })
+}
+
+export const getAllUsers = async () => {
+  const playersCollection = collection(dataBase, "players")
+  const playersCollection2 = collection(dataBase, "PRVM_DB_PLAYERS")
+    const data = await getDocs(playersCollection)
+    const data2 = await getDocs(playersCollection2)
+    const DB1 = data.docs.map((doc) => doc.data())
+    const DB2 = data2.docs.map((doc) => doc.data())
+    const p = DB1.concat(DB2)
+    console.log("HO")
+    return p
 }
 
 export const addUser = async (newPlayer) => {
